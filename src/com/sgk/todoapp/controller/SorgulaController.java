@@ -11,15 +11,14 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class SorgulaServlet
  */
 @WebServlet("/sorgula")
-public class SorgulaServlet extends HttpServlet {
+public class SorgulaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SorgulaServlet() {
+    public SorgulaController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
