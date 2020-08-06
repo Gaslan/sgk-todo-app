@@ -35,21 +35,27 @@ public class SorgulaController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String newJob = request.getParameter("todo-inputbox");
-		System.out.println(newJob);
-		TodoDvo todo = new TodoDvo();
-		todo.setId("1");
-		todo.setTitle("deneme");
-		todo.setDetail(newJob);
-		todo.setStatus(1);
-		todo.setCreationDate(LocalDateTime.now());
+		if(request.getParameter("checkbox") != null) {
+			String newJob = request.getParameter("todo-inputbox");
+			System.out.println(newJob);
+//			TodoDvo todo = new TodoDvo();
+//			todo.setId("1");
+//			todo.setTitle("deneme");
+//			todo.setDetail(newJob);
+//			todo.setStatus(1);
+//			todo.setCreationDate(LocalDateTime.now());
+//			
+//			
+//			TodoMongoDbRepository dbRepo = new TodoMongoDbRepository();
+//			dbRepo.create(todo);
+//			
+//			List<TodoDvo> finalList = dbRepo.readAll();
+//			System.out.println(finalList.get(0));
+		}
+		else if(request.getParameter("listbtn") != null) {
+			request.getRequestDispatcher("list.jsp").forward(request, response);;
+		}
 		
-		
-		TodoMongoDbRepository dbRepo = new TodoMongoDbRepository();
-		dbRepo.create(todo);
-		
-		List<TodoDvo> finalList = dbRepo.readAll();
-		System.out.println(finalList.get(0));
 	}
 
 	/**

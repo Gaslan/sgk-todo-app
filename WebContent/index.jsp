@@ -20,16 +20,15 @@
 		  <div class="input-group">
 		    <input name="todo-inputbox" id="todo-textbox" type="text" class="form-control" placeholder="Yapılacak işi yazın">
 		    
-		    <button class="input-group-addon input-checkbox" type="submit">
+		    <button name="checkbox" class="input-group-addon input-checkbox" type="submit">
 		      <span class="glyphicon glyphicon-ok" aria-hidden="true">
 		    </button>
 		    
-		    <button class="input-group-addon input-listbtn">
-		      <a href="list.jsp">
+		    <button name="listbtn" class="input-group-addon input-listbtn">
+		   
 		        <span class="glyphicon glyphicon-th-list" aria-hidden="true" >
-		      </a>
+
 		    </button>
-		    
 		  </div> 
 		</div>
 	</form>
