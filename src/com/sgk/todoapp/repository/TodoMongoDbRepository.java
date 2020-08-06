@@ -16,7 +16,7 @@ import com.sgk.todoapp.model.TodoDvo;
 
 public class TodoMongoDbRepository implements TodoCrud {
 	
-	private static final String CONNECTION_CODE = "mongodb+srv://gaslandev:Sgk123456@cluster0-9bbwr.mongodb.net/gaslandev?retryWrites=true&w=majority";
+	private static final String CONNECTION_CODE = "mongodb+srv://gaslandev:Sgk123456@cluster0-9bbwr.mongodb.net/sgk-todo-app?retryWrites=true&w=majority";
 	private static final String DATABASE_NAME = "sgk-todo-app";
 	
 	

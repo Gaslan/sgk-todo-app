@@ -1,0 +1,52 @@
+body {
+  font-size: 16px;
+  color: #fff;
+  background-color: #d4c9aa;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.todo-title-main {
+  margin: 20px 15%;
+  font-family: 'Red Rose', cursive;
+  color: black;
+}
+
+.todo-input {
+  width: 400px;
+  margin: 20px 15% 0px 15%;
+}
+#todo-textbox {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.input-listbtn {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.todo-title-list {
+  text-align: center;
+  color: black;
+  font-family: 'Red Rose', cursive;
+}
+
+.todo-list {
+  width: 40%;
+  margin: 30px auto;
+}
+
+.list-group-item {
+  background-color: transparent;
+  color: black;
+  font-family: 'Source Serif Pro', serif;
+  font-size: 18px;
+}
+
+.update-list-item {
+  position: relative;
+  float: right;
+  cursor: pointer;
+}
+.delete-from-list {
+  cursor: pointer;
+}
