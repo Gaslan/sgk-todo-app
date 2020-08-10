@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,33 +13,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap" rel="stylesheet">
   </head>
 <body>
-	
-  
 	<h1 class="todo-title-main">To Do App</h1>
 	<form action="./sorgula" method="get">
 		<div class="form-group todo-input">
 		  <div class="input-group">
 		    <input name="todo-inputbox" id="todo-textbox" type="text" class="form-control" placeholder="Yapılacak işi yazın">
 		    
-		    <button name="checkbox" class="input-group-addon input-checkbox" type="submit">
-		      <span class="glyphicon glyphicon-ok" aria-hidden="true">
+		    <button name="checkbox" class="btn btn-success input-checkbox">
+		    		<span class="glyphicon glyphicon-ok" aria-hidden="true">
 		    </button>
 		    
-		    <button name="listbtn" class="input-group-addon input-listbtn">
-		   
-		        <span class="glyphicon glyphicon-th-list" aria-hidden="true" >
-
-		    </button>
+		    <button name="listbtn" class="btn btn-info input-listbtn">
+		   		<span class="glyphicon glyphicon-th-list" aria-hidden="true" >
+		   	</button>
+		   	
 		  </div> 
 		</div>
 	</form>
-	
-	
+
+
 	
 	
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
+
 </body>
 </html>

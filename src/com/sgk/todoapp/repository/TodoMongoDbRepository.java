@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
+import com.mongodb.Block;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -31,7 +34,7 @@ public class TodoMongoDbRepository implements TodoCrud {
 		Document doc = new Document();
 		doc.append("title", todo.getTitle());
 		doc.append("detail", todo.getDetail());
-		doc.append("detail", todo.getStatus());
+		doc.append("status", todo.getStatus());
 		doc.append("creationDate", LocalDateTime.now().toString());
 		
 		MongoDatabase database = connect();
@@ -43,7 +46,7 @@ public class TodoMongoDbRepository implements TodoCrud {
 	public TodoDvo read(String id) {
 		MongoDatabase database = connect();
 		MongoCollection<Document> collection = database.getCollection("todos");
-		return collection.find(Filters.eq("_id", id), TodoDvo.class).first();
+		return collection.find(Filters.eq("_id", new ObjectId(id)), TodoDvo.class).first();
 	}
 
 	@Override
@@ -57,10 +60,10 @@ public class TodoMongoDbRepository implements TodoCrud {
 		MongoCursor<Document> it = collection.find().iterator();
 		
 		while (it.hasNext()) {
-			
 			Document doc = (Document) it.next();
+			
 			TodoDvo todo = new TodoDvo();
-			todo.setId(doc.getString("_id"));
+			todo.setId(doc.getObjectId("_id").toString());
 			todo.setTitle(doc.getString("title"));
 			todo.setDetail(doc.getString("detail"));
 			todo.setStatus(doc.getInteger("status", 0));
@@ -91,7 +94,18 @@ public class TodoMongoDbRepository implements TodoCrud {
 		
 		MongoDatabase database = connect();
 		MongoCollection<Document> collection = database.getCollection("todos");
-		collection.deleteOne(Filters.eq("_id", id));
+		
+//		FindIterable<Document> findIterable = collection.find(new Document());
+//		Block<Document> printBlock = new Block<Document>() {
+//		    @Override
+//		    public void apply(final Document document) {
+//		        System.out.println(document.toJson());
+//		    }
+//		};
+//		findIterable.forEach(printBlock);
+//		System.out.println(id);
+		
+		collection.deleteOne(Filters.eq("_id", new ObjectId(id)));
 	}
 
 }

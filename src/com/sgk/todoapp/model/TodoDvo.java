@@ -2,6 +2,8 @@ package com.sgk.todoapp.model;
 
 import java.time.LocalDateTime;
 
+import org.bson.types.ObjectId;
+
 public class TodoDvo {
 	
 	private String id;
@@ -10,8 +12,8 @@ public class TodoDvo {
 	private Integer status;
 	private LocalDateTime creationDate;
 	
-	public String getId() {
-		return id;
+	public ObjectId getId() {
+		return new ObjectId(id);
 	}
 	public void setId(String id) {
 		this.id = id;

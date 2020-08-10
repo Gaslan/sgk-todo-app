@@ -1,4 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@page import="com.sgk.todoapp.model.TodoDvo"%>
+<%@page language="java" contentType="text/html; charset=utf-8"%>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList"%> 
+<%@page import="com.sgk.todoapp.model.TodoDvo" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,31 +16,24 @@
     
   </head>
 <body>
+	
+	<h1 class="todo-title-list">To Do App</h1>
+	
+	<c:forEach items="${finalList}" var="item">
+		<ul class="list-group todo-list">
+		  	<li name="item" class="list-group-item">${item.getDetail()}
+		  	  <a href="<%=request.getContextPath()%>/delete"></a>
+		      <span name="update_item_btn" class="glyphicon glyphicon-pencil update-list-item" aria-hidden="true">
+		      
+		      <a href="delete?id=<c:out value='${item.getId()}' />">
+		      	<span name="delete_item_btn" class="glyphicon glyphicon-remove delete-from-list" aria-hidden="true">
+		      </a>
+		    </li>
+		</ul>
+	</c:forEach>
+	
+	
 
-  <h1 class="todo-title-list">To Do App</h1>
-  
-  <ul class="list-group todo-list">
-    <li class="list-group-item">Cras justo odio
-      <span class="glyphicon glyphicon-pencil update-list-item" aria-hidden="true">
-      <span class="glyphicon glyphicon-remove delete-from-list" aria-hidden="true">
-    </li>
-    <li class="list-group-item">Dapibus ac facilisis in
-      <span class="glyphicon glyphicon-pencil update-list-item" aria-hidden="true">
-      <span class="glyphicon glyphicon-remove delete-from-list" aria-hidden="true">
-    </li>
-    <li class="list-group-item">Morbi leo risus
-      <span class="glyphicon glyphicon-pencil update-list-item" aria-hidden="true">
-      <span class="glyphicon glyphicon-remove delete-from-list" aria-hidden="true">
-    </li>
-    <li class="list-group-item">Porta ac consectetur ac
-      <span class="glyphicon glyphicon-pencil update-list-item" aria-hidden="true">
-      <span class="glyphicon glyphicon-remove delete-from-list" aria-hidden="true">
-    </li>
-    <li class="list-group-item">Vestibulum at eros
-      <span class="glyphicon glyphicon-pencil update-list-item" aria-hidden="true">
-      <span class="glyphicon glyphicon-remove delete-from-list" aria-hidden="true">
-    </li>
-  </ul>
   
 
   
