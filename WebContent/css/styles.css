@@ -1,56 +1,73 @@
 body {
-  font-size: 16px;
-  color: #fff;
-  background-color: rgb(239, 248, 233);
-  font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+	color: #fff;
+	background-color: rgb(239, 248, 233);
+	font-family: 'Oxygen', sans-serif;
 }
 
 .todo-title-main {
-  margin: 20px 15%;
-  font-family: 'Red Rose', cursive;
-  color: black;
+	margin: 20px 15%;
+	font-family: 'Red Rose', cursive;
+	color: black;
+}
+
+.input-block {
+	margin: 0px 15%;
 }
 
 .todo-input {
-  width: 400px;
-  margin: 20px 15% 0px 15%;
+	width: 450px;
+	margin: 20px 15% 0px 15%;
 }
+
 #todo-textbox {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
+
 .input-checkbox {
+	float: left;
 	border-bottom-left-radius: 10px;
-	width:50%;
+	width: 50%;
 }
+
 .input-listbtn {
-  border-bottom-right-radius: 10px;
-  width: 50%;
+	border-bottom-right-radius: 10px;
+	width: 50%;
 }
 
 .todo-title-list {
-  text-align: center;
-  color: black;
-  font-family: 'Red Rose', cursive;
+	text-align: center;
+	color: black;
+	font-family: 'Red Rose', cursive;
+	width: fit-content;
+	float: left;
 }
 
 .todo-list {
-  width: 40%;
-  margin: 30px auto;
+	width: 40%;
+	margin: 30px auto;
 }
 
 .list-group-item {
-  background-color: transparent;
-  color: black;
-  font-family: 'Source Serif Pro', serif;
-  font-size: 18px;
+	background-color: transparent;
+	color: black;
+	font-family: 'Source Serif Pro', serif;
+	font-size: 18px;
 }
 
-.update-list-item {
-  position: relative;
-  float: right;
-  cursor: pointer;
+.list-item-input {
+	background-color: transparent;
+	border: 0px;
+	padding: 0px 10px;
+	width: 75%;
+	display: inline;
+	font-size: 20px;
 }
-.delete-from-list {
-  cursor: pointer;
+
+.success-message {
+  width: fit-content;
+  font-size: 14px;
+  margin: 15px 15% 0px 15%;
+  padding: 7px;
 }
