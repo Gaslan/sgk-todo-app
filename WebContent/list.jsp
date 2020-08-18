@@ -97,7 +97,7 @@
 					method: 'POST',
 					data: { updatedJob: updatedJob, _id: _id },
 					success: function(resultText) {
-						$('#result').html(resultText);
+						
 					},
 					error: function(jqXHR, exception) {
 						console.log('Error occured!!');

@@ -40,8 +40,6 @@ body {
 	text-align: center;
 	color: black;
 	font-family: 'Red Rose', cursive;
-	width: fit-content;
-	float: left;
 }
 
 .todo-list {
