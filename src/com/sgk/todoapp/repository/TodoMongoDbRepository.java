@@ -7,8 +7,6 @@ import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import com.mongodb.Block;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -77,16 +75,17 @@ public class TodoMongoDbRepository implements TodoCrud {
 
 	@Override
 	public void update(TodoDvo todo) {
-
 		Document doc = new Document();
 		doc.append("title", todo.getTitle());
 		doc.append("detail", todo.getDetail());
-		doc.append("detail", todo.getStatus());
 		doc.append("creationDate", LocalDateTime.now().toString());
-		
+		doc.append("status", todo.getStatus());
+		String a  = todo.getDetail();
 		MongoDatabase database = connect();
 		MongoCollection<Document> collection = database.getCollection("todos");
-		collection.updateOne(new Document("_id", todo.getId()), doc);
+		collection.updateOne(Filters.eq("_id",todo.getId()), new Document("$set", doc));
+		//collection.updateOne(new Document("_id", todo.getId()), doc);
+		//collection.updateOne(eq("i", 10), new Document("$set", new Document("i", 110)));
 	}
 
 	@Override

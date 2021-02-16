@@ -16,31 +16,123 @@
     
   </head>
 <body>
+	<h1 class="todo-title-list" onclick="location.href = 'index.jsp';" >To Do App</h1>
 	
-	<h1 class="todo-title-list">To Do App</h1>
-	
-	<c:forEach items="${finalList}" var="item">
-		<ul class="list-group todo-list">
-		  	<li name="item" class="list-group-item">${item.getDetail()}
-		  	  <a href="<%=request.getContextPath()%>/delete"></a>
-		      <span name="update_item_btn" class="glyphicon glyphicon-pencil update-list-item" aria-hidden="true">
-		      
-		      <a href="delete?id=<c:out value='${item.getId()}' />">
-		      	<span name="delete_item_btn" class="glyphicon glyphicon-remove delete-from-list" aria-hidden="true">
-		      </a>
-		    </li>
-		</ul>
-	</c:forEach>
-	
-	
+	<div id="success-alert" class="alert alert-success success-message" style="display:none; width:50%; margin:auto; text-align:center;">
+    	<strong>Başarılı!</strong> Seçilen iş silindi.
+	</div>
+		
+	<ul id="todo-list" class="list-group todo-list">
+		<c:forEach items="${finalList}" var="item">
+			<li id="list_item" class="list-group-item" data-value='${item.getId()}'>
+				<span class="not-editable-item">${item.getDetail()}</span>
+				<input class="form-control input-lg list-item-input" type="text" style="display: none;" placeholder="Değiştirmek için yazın.">
 
-  
+				<div class="pull-right">
+					<a href="#" id="update_button" style="margin-right: 10px;">
+						<span class="glyphicon glyphicon-pencil"></span>      
+					</a>
+					<a href="#" id="delete_button">
+						<span class="glyphicon glyphicon-remove"></span>
+					</a>
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
 
-  
+	
+	
+	
 
   <!-- jQuery (Bootstrap JS plugins depend on it) -->
-  <script src="js/jquery-2.1.4.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/script.js"></script>
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/script.js"></script>
+	<script type="text/javascript">
+	var todoList = document.querySelector("#todo-list");
+	todoList.addEventListener("click", updateButtonHandler, false);
+
+	function updateButtonHandler(e) {
+		if (e.path[1].id === "update_button") {
+			var parent = findParent(e.target, 3);
+			var uneditable = findChild(parent).$span;
+			var editableInp = findChild(parent).$input;
+			
+			uneditable.style.display = 'none';
+			editableInp.style.display = 'inline';
+			editableInp.focus();
+		}
+	}
+	function findChild(nodeObj) {
+		var $span = nodeObj.children[0];
+		var $input = nodeObj.children[1];
+		return {
+			$span,
+			$input
+		};
+	}
+
+	function findParent(nodeObj, number) {
+		var i;
+		for (i = 0; i < number; i++) {
+			nodeObj = nodeObj.parentNode;
+		}
+		return nodeObj;
+	}
+
+	$('.list-item-input').on('blur keydown', function(e) {
+		if (e.type === 'blur' || e.keyCode === 13) {
+			var parent = $(this).parent();
+
+			parent.find('.not-editable-item').show();
+			parent.find('.list-item-input').hide();
+			parent.find('.update_done').hide();
+
+			if (parent.find('.list-item-input').val() !== "") {
+				var updatedJob = parent.find('.list-item-input').val();
+				var _id = document.getElementById("list_item").getAttribute("data-value");
+				parent.find('.not-editable-item').text(updatedJob);
+				$.ajax({
+					url: 'update',
+					method: 'POST',
+					data: { updatedJob: updatedJob, _id: _id },
+					success: function(resultText) {
+						
+					},
+					error: function(jqXHR, exception) {
+						console.log('Error occured!!');
+					}
+				});
+
+			}
+		}
+
+	});
+	
+	todoList.addEventListener("click", deleteButtonHandler, false);
+	function deleteButtonHandler(e) {
+		var parent = findParent(e.target, 3);
+		var _id = parent.getAttribute("data-value");
+ 		if (e.path[1].id === "delete_button") {
+			$.ajax({
+				url: 'delete',
+				method: 'POST',
+				data: {_id: _id },
+				success: function(resultText) {
+					findParent(e.target, 4).removeChild(findParent(e.target, 3));
+					$('#success-alert').fadeIn();
+					$('#success-alert').fadeOut(1000);
+				},
+				error: function(jqXHR, exception) {
+					console.log('Error occured!!');
+				}
+			});
+		}
+		 
+		
+	}
+	
+	
+	</script>
 </body>
 </html>

@@ -14,23 +14,28 @@
   </head>
 <body>
 	<h1 class="todo-title-main">To Do App</h1>
-	<form action="./sorgula" method="get">
-		<div class="form-group todo-input">
-		  <div class="input-group">
-		    <input name="todo-inputbox" id="todo-textbox" type="text" class="form-control" placeholder="Yapılacak işi yazın">
-		    
-		    <button name="checkbox" class="btn btn-success input-checkbox">
+	
+	<div class="todo-input">
+	  <div class="form-row">
+	    <input name="todo-inputbox" id="todo-textbox" type="text" class="form-control" placeholder="Yapılacak işi yazın">
+	    
+	    <form id="addItem">
+		    <button name="checkbox" type="button" class="btn btn-success input-checkbox form-control" >
 		    		<span class="glyphicon glyphicon-ok" aria-hidden="true">
 		    </button>
-		    
-		    <button name="listbtn" class="btn btn-info input-listbtn">
+	    </form>
+	    <form action="./ReadDatabase" method="get" >
+		    <button name="listbtn" class="btn btn-info input-listbtn form-control">
 		   		<span class="glyphicon glyphicon-th-list" aria-hidden="true" >
 		   	</button>
-		   	
-		  </div> 
-		</div>
-	</form>
+	   	</form>
+	  </div> 
+	</div>
+	
 
+	<div id="success-alert" class="alert alert-success success-message" style="display:none;">
+    	<strong>Başarılı!</strong> Yeni iş başarıyla eklendi.
+	</div>
 
 	
 	
@@ -38,6 +43,33 @@
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
+	<script type="text/javascript">
+	$('.input-checkbox').on("click", function(e) {
+		var addedItem = document.getElementById("todo-textbox").value;
+
+		if (addedItem !== ""){
+			
+			$.ajax({
+				url: 'add',
+				method: 'POST',
+				data: {addedItem: addedItem},
+				success: function(resultText) {
+					$('#success-alert').fadeIn();
+					$('#success-alert').fadeOut(2500);
+					
+/* 					$('#addItem').submit(function (e) {
+				        if (!validate(this)) e.preventDefault();
+				    }); */
+				},
+				error: function(jqXHR, exception) {
+					console.log('Error occured!!');
+				}
+			});
+		}
+		
+	})
+	
+	</script>
 
 </body>
 </html>
